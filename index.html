@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="text" onkeydown="keydown(this,event,true)">
+<script>
+    function keydown($this,event,float){
+
+
+        if(!existsKey(event.keyCode))
+        {
+
+
+            if(float && event.keyCode==110)
+            {
+                if($this.value.indexOf('.')>0)
+                {
+                    event.preventDefault();
+                }
+            }else
+            {
+                console.log(event);
+                event.preventDefault();
+            }
+
+
+
+        }else{
+            //only allow enter two decimal
+            if($this.value.split('').reverse().join('').indexOf('.')>=2&&event.keyCode!=8)
+            {
+                event.preventDefault();
+            }
+        }
+
+
+    }
+    function existsKey(key,neetFloat)
+    {
+        var keycode=[
+            48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,8
+        ];
+
+
+
+        for(var i= 0,len=keycode.length;i<len;i++)
+        {
+            if(keycode[i]==key)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+</script>
+</body>
+</html>
