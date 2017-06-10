@@ -6,22 +6,24 @@
 </head>
 <body>
 
-<input type="text" onkeydown="keydown(this,event,true)">
+<input type="text" onkeydown="keydown(this,event,false)">
+
+
 <script>
-    function keydown($this,event,float){
+    function keydown($this,event,is_allow_decimal){
 
 
         if(!existsKey(event.keyCode))
         {
+            console.log(is_allow_decimal);
 
-
-            if(float && event.keyCode==110)
+            if(is_allow_decimal && (event.keyCode==110||event.keyCode==190))
             {
                 if($this.value.indexOf('.')>0)
                 {
                     event.preventDefault();
                 }
-            }else
+            }else if(!event.ctrlKey ||(event.ctrlKey && event.keyCode!=65))
             {
                 console.log(event);
                 event.preventDefault();
@@ -42,7 +44,7 @@
     function existsKey(key,neetFloat)
     {
         var keycode=[
-            48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,8
+            48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,8,37,38,39,40
         ];
 
 
